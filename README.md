@@ -3,6 +3,12 @@
 ![FocusFlow Logo](src/assets/focus-flow.png)
 ![GitHub License](https://img.shields.io/github/license/deepakpatil26/focus-flow?style=flat-square)
 
+## Stay Focused, Stay Productive
+
+FocusFlow is a powerful productivity tool designed to help you master your focus using the Pomodoro technique. With customizable timers, distraction blocking, and insightful analytics, FocusFlow empowers you to take control of your work sessions and achieve your goals.
+
+![FocusFlow Screenshot](src/assets/screenshot.png)
+
 ## Scenario
 
 Modern knowledge workers are constantly battling distractions—endless browser tabs, relentless notifications, and digital noise—making staying focused harder than ever.
