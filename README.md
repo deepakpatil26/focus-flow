@@ -73,6 +73,3 @@ Modern knowledge workers are constantly battling distractions—endless browser 
 
 - **Frontend:** React + TypeScript + Tailwind CSS
 - **Backend:** Firebase (Auth, Firestore, Hosting)
-
-This is the problem statement: make a complete app for it using vite, TypeScript and Tailwind CSS. We will use Firebase for the backend.
-Also, after the new tailwind and vite update, whenever I try to install the new vite project, I am unable to setup the tailwind CSS so if there is any ready-to-go starter pack which contains vite, tailwind, both included and working, we will go with that.
