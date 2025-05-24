@@ -1,5 +1,8 @@
 # 🚀 FocusFlow: Pomodoro & Distraction Blocker with Session Analytics
 
+![FocusFlow Logo](src/assets/focus-flow.png)
+![GitHub License](https://img.shields.io/github/license/deepakpatil26/focus-flow?style=flat-square)
+
 ## Scenario
 
 Modern knowledge workers are constantly battling distractions—endless browser tabs, relentless notifications, and digital noise—making staying focused harder than ever.
@@ -8,6 +11,7 @@ Modern knowledge workers are constantly battling distractions—endless browser 
 
 **Build a next-generation productivity tool** that empowers users to:
 
+- Master their focus with the Pomodoro technique
 - Run customizable Pomodoro timers
 - Block distracting websites/apps during work sessions
 - Log and analyse focus sessions
