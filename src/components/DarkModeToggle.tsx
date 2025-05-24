@@ -1,4 +1,3 @@
-// src/components/DarkModeToggle.tsx
 import { useEffect, useState } from 'react';
 
 export default function DarkModeToggle() {
@@ -7,34 +6,20 @@ export default function DarkModeToggle() {
   );
 
   useEffect(() => {
-    const html = document.documentElement;
-
     if (enabled) {
-      html.classList.add('dark');
+      document.documentElement.classList.add('dark');
     } else {
-      html.classList.remove('dark');
+      document.documentElement.classList.remove('dark');
     }
-
     localStorage.setItem('focusflow-dark', String(enabled));
   }, [enabled]);
 
-  useEffect(() => {
-    const saved = localStorage.getItem('focusflow-dark');
-    if (saved === 'true') {
-      document.documentElement.classList.add('dark');
-      setEnabled(true); // <-- sync state
-    } else {
-      document.documentElement.classList.remove('dark');
-      setEnabled(false); // <-- sync state
-    }
-  }, []);
-
   return (
     <button
-      onClick={() => setEnabled((prev) => !prev)}
-      className="rounded bg-gray-300 p-2 text-sm dark:bg-gray-700"
+      onClick={() => setEnabled(!enabled)}
+      className="rounded-lg bg-gray-200 px-4 py-2 text-sm font-medium text-gray-900 hover:bg-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
     >
-      {enabled ? '🌞 Light Mode' : '🌙 Dark Mode'}
+      {enabled ? '🌞 Light' : '🌙 Dark'}
     </button>
   );
 }
