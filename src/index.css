@@ -1,59 +1,56 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
 @import 'tailwindcss';
 
-@config "../tailwind.config.js";
-
-@theme {
+:root {
   --font-body: 'Bricolage Grotesque', sans-serif;
   --font-title: 'Bricolage Grotesque', sans-serif;
   --dark: #111111;
   --light: #f5f5f5;
 }
 
+body {
+  font-family: var(--font-body);
+  background: var(--light);
+  color: var(--dark);
+}
+
+.dark body {
+  background: var(--dark);
+  color: var(--light);
+}
+
 @layer components {
   ::selection {
-    @apply bg-dark text-light;
+    background-color: var(--dark);
+    color: var(--light);
   }
 
   /* * {
-          scrollbar-width: thin;
-        } */
+    scrollbar-width: thin;
+  } */
   ::-webkit-scrollbar {
-    @apply w-0;
+    width: 0;
   }
 
   .scroll::-webkit-scrollbar {
-    @apply w-1 rounded-full bg-light;
+    width: 0.25rem; /* w-1 */
+    border-radius: 9999px; /* rounded-full */
+    background: var(--light);
   }
 
   .scroll::-webkit-scrollbar-thumb {
-    @apply rounded-full bg-orange-300;
+    border-radius: 9999px;
+    background: #fdba74; /* bg-orange-300 */
   }
 
-  /* ::-webkit-scrollbar {
-        @apply w-2 rounded-full bg-transparent;
-      }
-    
-      ::-webkit-scrollbar-track {
-        @apply bg-transparent rounded-full;
-      }
-    
-      ::-webkit-scrollbar-thumb {
-        @apply bg-coffee-700 rounded-full border border-solid border-coffee-400;
-      }
-    
-      ::-webkit-scrollbar-thumb:hover {
-        @apply bg-coffee-800;
-      } */
-
   body {
-    @apply font-body;
+    font-family: var(--font-body);
   }
 
   main,
   section,
   div {
-    @apply font-body;
+    font-family: var(--font-body);
   }
 
   .navlink,
@@ -63,7 +60,7 @@
   h4,
   h5,
   h6 {
-    @apply font-title;
+    font-family: var(--font-title);
   }
 
   label,
@@ -73,21 +70,52 @@
   button,
   ul,
   li {
-    @apply font-body font-light;
+    font-family: var(--font-body);
+    font-weight: 300; /* font-light */
   }
 
   p,
   span {
-    @apply font-body font-normal;
+    font-family: var(--font-body);
+    font-weight: 400; /* font-normal */
   }
 
   main {
-    @apply relative z-10 px-4 py-12 sm:py-24 md:px-12 md:py-32 lg:py-36 xl:px-16 xl:py-48;
+    position: relative;
+    z-index: 10;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
   }
-
-  /* section {
-        @apply py-24 md:py-32 lg:py-48 px-4;
-      } */
+  @media (min-width: 640px) {
+    main {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+  @media (min-width: 768px) {
+    main {
+      padding-left: 3rem;
+      padding-right: 3rem;
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    main {
+      padding-top: 9rem;
+      padding-bottom: 9rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    main {
+      padding-left: 4rem;
+      padding-right: 4rem;
+      padding-top: 12rem;
+      padding-bottom: 12rem;
+    }
+  }
 
   .filter-white {
     filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%)
@@ -100,22 +128,35 @@
   }
 
   .transition-300 {
-    @apply transition-all duration-300 ease-linear;
+    transition: all 300ms linear;
   }
 
   .transition-700 {
-    @apply transition-all duration-700 ease-in-out;
+    transition: all 700ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .transition-1000 {
-    @apply transition-all duration-1000;
+    transition: all 1000ms;
   }
 
   .navlink {
-    @apply inline-flex w-full items-center justify-between pb-2 text-2xl font-bold capitalize text-dark group-hover:font-bold group-hover:tracking-wider;
+    display: inline-flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    color: var(--dark);
   }
 
   .overlay {
-    @apply pointer-events-none absolute inset-0 z-0 select-none bg-black/20;
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    user-select: none;
+    background: rgba(0, 0, 0, 0.2);
   }
 }

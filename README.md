@@ -1,221 +1,78 @@
-# Vite + React + TailwindCSS(4) Starter Kit
+# 🚀 FocusFlow: Pomodoro & Distraction Blocker with Session Analytics
+
+## Scenario
+
+Modern knowledge workers are constantly battling distractions—endless browser tabs, relentless notifications, and digital noise—making staying focused harder than ever.
+
+## 🎯 Objective
+
+**Build a next-generation productivity tool** that empowers users to:
+
+- Run customizable Pomodoro timers
+- Block distracting websites/apps during work sessions
+- Log and analyse focus sessions
+- Gain actionable insights from session analytics
 
 ---
 
-## Getting Started`*`
+## 👤 User Role
 
-### 1. Clone this repo`*`
+- Each user manages their focus settings and session history for a personalised experience.
 
-```sh
-git clone https://github.com/purnasth/vite-react-tailwind-starter.git
-```
+## 🔐 Authentication & Authorization
 
-### &rarr; for `jsx`
-
-<!-- how to print arrow in markdown ?
-https://stackoverflow.com/questions/30003353/how-to-write-an-arrow-in-markdown 
- -->
-
-```sh
-git checkout vrt
-```
-
-#### Repo Url: https://github.com/purnasth/vite-react-tailwind-starter-kit/tree/vrt
-
-### &rarr; for `TypeScript`
-
-```sh
-git checkout vrt-ts
-```
-
-#### Repo Url: https://github.com/purnasth/vite-react-tailwind-starter-kit/tree/vrt-ts
-
-### &rarr; for `react-with-tailwind(v3)`
-
-```sh
-git checkout tailwind-v3
-```
-
-#### Repo Url: https://github.com/purnasth/vite-react-tailwind-starter-kit/tree/tailwind-v3
+- Secure email/password signup & login
+- All features (settings, sessions, analytics) require authentication
 
 ---
 
-### 2. Install and Run`*`
+## 🧱 Core Modules
 
-Run the following commands in your terminal:
+### ⏲️ Timer & Workflow
 
-```sh
-pnpm install
-pnpm run dev
-```
+- Start/stop Pomodoro cycles (default: 25 min work + 5 min break)
+- Fully customizable intervals to suit individual workflows
 
-- <b><em>`pnpm install`</em></b> to install the node_modules on your local repo which has been .gitignore in this github repo.
-- <b><em>`pnpm run dev`</em></b> for running this in your browser, by default it opens in port http://localhost:5173/
+### 🚫 Distraction Blocklist (**Key Feature**)
 
----
+- Users specify domains/apps to block during active work sessions
+- Blocking is enforced only while the timer is running; everything is unblocked during breaks
 
-## Getting Started`*`
+### 📝 Session Logging
 
-### 1. Clone this repo`*`
+- Automatic logging of session start/end, interruptions, and breaks
+- Manual “Abort” option with reason capture
 
-```sh
-git clone https://github.com/purnasth/vite-react-tailwind-starter.git
-```
+### 📊 Analytics Dashboard
 
+- Track total Pomodoros per day/week
+- View average focus time
+- Analyse interrupted vs. completed session ratios
+- Visualise focus trends with line/bar charts
 
-### &rarr; for `pnpm TypeScript + Tailwindcss + Prettier (Auto Formatting)`
+### 🔔 Notifications & Sounds
 
-```sh
-the `main` branch
-```
+- In-app or desktop alerts for session start/end
+- Mute and volume controls for a distraction-free experience
 
-#### &rarr; Repo Url: https://github.com/purnasth/vite-react-tailwind-starter-kit/
+### 🌙 Dark Mode (**Bonus Feature**)
 
-#
-
-### 2. Install and Run`*`
-
-Run the following commands in your terminal:
-
-```sh
-pnpm install
-pnpm dev
-```
-
-- <b><em>`pnpm install`</em></b> to install the node_modules on your local repo which has been .gitignore in this github repo.
-- <b><em>`pnpm dev`</em></b> for running this in your browser, by default it opens in port http://localhost:5173/
+- Seamless dark mode for comfortable use, day or night
 
 ---
 
+## 💡 Additional Suggestions
 
-## Codes Used
-
-<b>`NOTE:`
-<em>
-Please disregard these below provided codes if you've already completed the first two steps of the "Getting Started" section. It's only meant for those interested in manually creating a project from scratch with Vite + React, Typescript, TailwindCSS and Prettier (Auto Formatting) with pnpm.
-</em>
-</b>
-
-### Install vite + react
-
-```sh
-pnpm create vite@latest ./ --template react
-# y to proceed
-# Select a framework: react
-# Select a variant: TypeScript + SWC
-pnpm install
-pnpm run dev
-```
-
-```sh
-npm run dev -- --host
-```
-
-### Install tailwindCSS
-
-```sh
-pnpm install tailwindcss @tailwindcss/vite
-```
-
-### Configure the Vite plugin `vite.config.ts`
-Update the file `vite.config.ts` file:
-```ts
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react-swc';
-import tailwindcss from '@tailwindcss/vite';
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react(), tailwindcss()],
-});
-```
-
-### Import Tailwind CSS styles `index.css`
-Create a file named `index.css` in the `src` directory and add the following lines:
-```css
-@import "tailwindcss";
-```
-`NOTE`: In case you are migrating from tailwindcss v3.4 to v4.0, link your existing `tailwind.config.js` file to the new `index.css` file.
-
-```css
-@config "../tailwind.config.js";
-```
-
-### Install Prettier
-
-```sh
-pnpm install -D prettier
-```
-
-### Add Prettier Config
-
-Create a file named `.prettierrc` in the root directory and add the following lines:
-
-```json
-{
-  "semi": false,
-  "singleQuote": true,
-  "tabWidth": 2,
-  "useTabs": false,
-  "printWidth": 80,
-  "endOfLine": "auto"
-}
-```
-
-### Add Prettier Scripts
-
-Add the following lines to the `scripts` object in your `package.json` file:
-
-```json
-"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-"format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
-```
-
-### Run Prettier
-
-```sh
-pnpm run format
-```
-
-### Auto Formatting with Prettier
-
-```sh
-pnpm i -D prettier prettier-plugin-tailwindcss
-```
-
-<b>`NOTE:`
-<em>
-Enable the `formatOnSave` option in your editor to auto-format your code with Prettier. You can also run the `pnpm run format` command to format your code. 
-Cheers! Now on every save, your code will be auto-formatted. Congratulations! 
-</em>
-</b>
-
+- **Streaks & Achievements:** Motivate users with daily streaks and achievement badges
+- **Quick Notes:** Jot down thoughts or to-dos during breaks
+- **Cloud Sync:** All data is securely stored and synced via the Firebase backend
 
 ---
 
-## Libraries `pnpm`
+## 🛠️ Tech Stack
 
-```
-pnpm install react-router-dom
-pnpm install react-icons
-```
-<!-- pnpm install react-router-dom
-pnpm install react-icons
-pnpm install react-helmet
-pnpm install react-query
-pnpm install react-toastify
-pnpm install react-modal
-pnpm install react-select
-pnpm install react-datepicker
-pnpm install react-table
-pnpm install react-hook-form
-pnpm install react-markdown
-pnpm install react-syntax-highlighter
-pnpm install react-draggable
-pnpm install react-beautiful-dnd
-pnpm install react-spring
-pnpm install react-use
-pnpm install react-use-gesture
-pnpm install react-use-measure -->
+- **Frontend:** React + TypeScript + Tailwind CSS
+- **Backend:** Firebase (Auth, Firestore, Hosting)
 
-⭐ Star this repo on GitHub — it helps!
+This is the problem statement: make a complete app for it using vite, TypeScript and Tailwind CSS. We will use Firebase for the backend.
+Also, after the new tailwind and vite update, whenever I try to install the new vite project, I am unable to setup the tailwind CSS so if there is any ready-to-go starter pack which contains vite, tailwind, both included and working, we will go with that.
