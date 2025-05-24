@@ -1,9 +1,9 @@
-import BlocklistManager from "../components/BlocklistManager";
+import BlocklistManager from '../components/BlocklistManager';
 
 export default function BlocklistPage() {
   return (
-    <div className="p-6">
-      <h2 className="text-xl font-semibold mb-4">Distraction Blocklist</h2>
+    <div className="mx-auto max-w-2xl p-6">
+      <h1 className="mb-6 text-2xl font-semibold">Website Blocking</h1>
       <BlocklistManager />
     </div>
   );

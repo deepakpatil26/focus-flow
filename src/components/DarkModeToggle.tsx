@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
@@ -10,7 +10,7 @@ interface DarkModeStore {
 const useDarkMode = create<DarkModeStore>()(
   persist(
     (set) => ({
-      isDark: false,
+      isDark: window.matchMedia('(prefers-color-scheme: dark)').matches,
       toggle: () => set((state) => ({ isDark: !state.isDark })),
     }),
     {
@@ -23,10 +23,11 @@ export default function DarkModeToggle() {
   const { isDark, toggle } = useDarkMode();
 
   useEffect(() => {
+    const root = document.documentElement;
     if (isDark) {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
     }
   }, [isDark]);
 
