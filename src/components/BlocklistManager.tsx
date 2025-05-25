@@ -7,8 +7,24 @@ export default function BlocklistManager() {
   const [inputValue, setInputValue] = useState('');
   const [blocklist, setBlocklist] = useState<string[]>([]);
   const [isBlocking, setIsBlocking] = useState(false);
+  const [extensionInstalled, setExtensionInstalled] = useState(false);
 
   useEffect(() => {
+    // Check if extension is installed
+    if (window.chrome?.runtime) {
+      try {
+        chrome.runtime.sendMessage(
+          'extension-id', 
+          { type: 'PING' },
+          response => {
+            setExtensionInstalled(!!response);
+          }
+        );
+      } catch (e) {
+        setExtensionInstalled(false);
+      }
+    }
+
     loadBlocklist();
   }, []);
 
@@ -34,6 +50,17 @@ export default function BlocklistManager() {
       domains: newBlocklist,
       isActive: newIsBlocking,
     });
+
+    // Update extension if installed
+    if (extensionInstalled) {
+      chrome.runtime.sendMessage({
+        type: 'UPDATE_BLOCKLIST',
+        payload: {
+          domains: newBlocklist,
+          isActive: newIsBlocking,
+        },
+      });
+    }
   };
 
   const addDomain = async () => {
@@ -56,17 +83,6 @@ export default function BlocklistManager() {
     const newIsBlocking = !isBlocking;
     setIsBlocking(newIsBlocking);
     await saveBlocklist(blocklist, newIsBlocking);
-
-    // Send message to extension if it exists
-    if (window.chrome?.runtime?.sendMessage) {
-      window.chrome.runtime.sendMessage({
-        type: 'UPDATE_BLOCKLIST',
-        payload: {
-          domains: blocklist,
-          isActive: newIsBlocking,
-        },
-      });
-    }
   };
 
   return (
@@ -119,10 +135,12 @@ export default function BlocklistManager() {
         )}
       </ul>
 
-      {!window.chrome?.runtime?.sendMessage && (
-        <p className="text-sm text-yellow-600 dark:text-yellow-400">
-          Note: Install the FocusFlow browser extension to enable website blocking.
-        </p>
+      {!extensionInstalled && (
+        <div className="rounded-lg bg-yellow-50 p-4 dark:bg-yellow-900/20">
+          <p className="text-sm text-yellow-800 dark:text-yellow-200">
+            Browser extension not detected. Please install the FocusFlow extension to enable website blocking.
+          </p>
+        </div>
       )}
     </div>
   );
