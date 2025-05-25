@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FocusFlow Blocker</title>
+    <style>
+      body {
+        width: 300px;
+        padding: 16px;
+        font-family:
+          system-ui,
+          -apple-system,
+          sans-serif;
+      }
+      .status {
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 16px;
+        text-align: center;
+      }
+      .active {
+        background-color: #dcfce7;
+        color: #166534;
+      }
+      .inactive {
+        background-color: #fee2e2;
+        color: #991b1b;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="status" class="status"></div>
+    <div id="blocklist"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>
