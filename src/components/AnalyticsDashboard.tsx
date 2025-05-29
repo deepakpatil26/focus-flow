@@ -1,4 +1,4 @@
-import { SessionEntry } from './SessionLogger';
+import { SessionEntry } from '../context/SessionContext';
 import {
   XAxis,
   YAxis,
