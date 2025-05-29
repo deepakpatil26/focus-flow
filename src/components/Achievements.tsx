@@ -1,5 +1,5 @@
+import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import { collection, doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase';
 
 interface Achievement {
@@ -74,34 +74,6 @@ export default function Achievements() {
       await setDoc(userAchievementsRef, { achievements: initialAchievements });
       setUserAchievements(initialAchievements);
     }
-  };
-
-  const updateAchievement = async (achievementId: string, progress: number) => {
-    if (!auth.currentUser) return;
-
-    const achievement = ACHIEVEMENTS.find(a => a.id === achievementId);
-    if (!achievement) return;
-
-    const userAchievementIndex = userAchievements.findIndex(
-      ua => ua.achievementId === achievementId
-    );
-
-    if (userAchievementIndex === -1) return;
-
-    const updatedAchievements = [...userAchievements];
-    const userAchievement = updatedAchievements[userAchievementIndex];
-
-    userAchievement.progress = progress;
-    
-    if (progress >= achievement.requirement && !userAchievement.completed) {
-      userAchievement.completed = true;
-      userAchievement.completedAt = new Date();
-    }
-
-    setUserAchievements(updatedAchievements);
-
-    const userAchievementsRef = doc(db, 'users', auth.currentUser.uid, 'data', 'achievements');
-    await updateDoc(userAchievementsRef, { achievements: updatedAchievements });
   };
 
   return (

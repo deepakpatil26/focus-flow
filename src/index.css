@@ -1,107 +1,33 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
-@import 'tailwindcss';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --font-body: 'Bricolage Grotesque', sans-serif;
   --font-title: 'Bricolage Grotesque', sans-serif;
-  --dark: #111111;
-  --light: #f5f5f5;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-  }
 }
 
 body {
   font-family: var(--font-body);
-  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 transition-colors duration-200 dark:bg-gray-900 dark:text-white;
+  }
 }
 
 @layer components {
-  ::selection {
-    @apply bg-gray-900 text-white dark:bg-white dark:text-gray-900;
-  }
-
-  ::-webkit-scrollbar {
-    width: 0;
-  }
-
   .scroll::-webkit-scrollbar {
     @apply w-1 rounded-full bg-gray-200 dark:bg-gray-700;
   }
 
   .scroll::-webkit-scrollbar-thumb {
     @apply rounded-full bg-orange-300 dark:bg-orange-600;
-  }
-
-  body {
-    font-family: var(--font-body);
-  }
-
-  main,
-  section,
-  div {
-    font-family: var(--font-body);
-  }
-
-  .navlink,
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: var(--font-title);
-  }
-
-  label,
-  a,
-  input,
-  textarea,
-  button,
-  ul,
-  li {
-    font-family: var(--font-body);
-    @apply font-light;
-  }
-
-  p,
-  span {
-    font-family: var(--font-body);
-    @apply font-normal;
-  }
-
-  main {
-    @apply relative z-10 px-4 py-12 sm:py-24 md:px-12 md:py-32 lg:py-36 xl:px-16 xl:py-48;
-  }
-
-  .filter-white {
-    @apply invert brightness-200 contrast-200;
-  }
-
-  .filter-black {
-    @apply brightness-0 contrast-200;
-  }
-
-  .transition-300 {
-    @apply transition-all duration-300 ease-linear;
-  }
-
-  .transition-700 {
-    @apply transition-all duration-700 ease-in-out;
-  }
-
-  .transition-1000 {
-    @apply transition-all duration-1000;
-  }
-
-  .navlink {
-    @apply inline-flex w-full items-center justify-between pb-2 text-2xl font-bold capitalize text-gray-900 dark:text-white;
-  }
-
-  .overlay {
-    @apply pointer-events-none absolute inset-0 z-0 select-none bg-black/20 dark:bg-white/20;
   }
 }
