@@ -1,10 +1,12 @@
 // src/components/SessionLogger.tsx
 import React from 'react';
-import { useSessions } from '../context/SessionContext';
+import type { SessionEntry } from '../context/SessionContext';
 
-export const SessionLogger: React.FC = () => {
-  const { sessions } = useSessions();
+interface SessionLoggerProps {
+  sessions: SessionEntry[];
+}
 
+export const SessionLogger: React.FC<SessionLoggerProps> = ({ sessions }) => {
   return (
     <div className="w-full max-w-2xl rounded-lg bg-white p-4 shadow-md dark:bg-gray-800">
       <h2 className="mb-2 text-lg font-semibold">Session History</h2>

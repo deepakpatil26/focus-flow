@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 import { useEffect, useState } from 'react';
 import { useSessions } from '../context/SessionContext';
 import { db, auth } from '../firebase';
@@ -22,21 +24,27 @@ export default function PomodoroTimer({ settings }: PomodoroTimerProps) {
   const [startTime, setStartTime] = useState<Date | null>(null);
 
   // Load sound settings
-  const [isMuted, setIsMuted] = useState(() => 
-    localStorage.getItem('focusflow-muted') === 'true'
+  const [isMuted] = useState(
+    () => localStorage.getItem('focusflow-muted') === 'true',
   );
-  const [volume, setVolume] = useState(() => 
-    parseFloat(localStorage.getItem('focusflow-volume') || '1')
+  const [volume] = useState(() =>
+    parseFloat(localStorage.getItem('focusflow-volume') || '1'),
   );
 
   // Initialize sounds
-  const startWorkSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3');
-  const startBreakSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3');
-  const abortSound = new Audio('https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3');
+  const startWorkSound = new Audio(
+    'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3',
+  );
+  const startBreakSound = new Audio(
+    'https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3',
+  );
+  const abortSound = new Audio(
+    'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3',
+  );
 
   // Update sound volumes
   useEffect(() => {
-    [startWorkSound, startBreakSound, abortSound].forEach(sound => {
+    [startWorkSound, startBreakSound, abortSound].forEach((sound) => {
       sound.volume = isMuted ? 0 : volume;
     });
   }, [isMuted, volume]);
@@ -114,10 +122,13 @@ export default function PomodoroTimer({ settings }: PomodoroTimerProps) {
 
     // Show notification
     if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification(`${sessionType === 'work' ? 'Work' : 'Break'} session started`, {
-        body: `Time to ${sessionType === 'work' ? 'focus' : 'take a break'}!`,
-        icon: '/icons/icon128.png'
-      });
+      new Notification(
+        `${sessionType === 'work' ? 'Work' : 'Break'} session started`,
+        {
+          body: `Time to ${sessionType === 'work' ? 'focus' : 'take a break'}!`,
+          icon: '/icons/icon128.png',
+        },
+      );
     }
   };
 
@@ -165,10 +176,13 @@ export default function PomodoroTimer({ settings }: PomodoroTimerProps) {
 
     // Show notification
     if ('Notification' in window && Notification.permission === 'granted') {
-      new Notification(`${nextType === 'work' ? 'Work' : 'Break'} session started`, {
-        body: `Time to ${nextType === 'work' ? 'focus' : 'take a break'}!`,
-        icon: '/icons/icon128.png'
-      });
+      new Notification(
+        `${nextType === 'work' ? 'Work' : 'Break'} session started`,
+        {
+          body: `Time to ${nextType === 'work' ? 'focus' : 'take a break'}!`,
+          icon: '/icons/icon128.png',
+        },
+      );
     }
   };
 

@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
 import { useSessions } from '../context/SessionContext';
 import {
-  LineChart,
-  Line,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -14,7 +12,7 @@ import {
   Pie,
   Cell,
 } from 'recharts';
-import { format, startOfWeek, eachDayOfInterval, subDays } from 'date-fns';
+import { format, eachDayOfInterval, subDays } from 'date-fns';
 
 const COLORS = ['#10B981', '#EF4444', '#F59E0B', '#3B82F6'];
 
@@ -114,8 +112,18 @@ export default function AnalyticsPage() {
                 <XAxis dataKey="date" />
                 <YAxis />
                 <Tooltip />
-                <Bar dataKey="completed" stackId="a" fill="#10B981" name="Completed" />
-                <Bar dataKey="aborted" stackId="a" fill="#EF4444" name="Aborted" />
+                <Bar
+                  dataKey="completed"
+                  stackId="a"
+                  fill="#10B981"
+                  name="Completed"
+                />
+                <Bar
+                  dataKey="aborted"
+                  stackId="a"
+                  fill="#EF4444"
+                  name="Aborted"
+                />
               </BarChart>
             </ResponsiveContainer>
           </div>
@@ -138,7 +146,7 @@ export default function AnalyticsPage() {
                   fill="#8884d8"
                   dataKey="value"
                 >
-                  {pieData.map((entry, index) => (
+                  {pieData.map((_entry, index) => (
                     <Cell
                       key={`cell-${index}`}
                       fill={COLORS[index % COLORS.length]}
@@ -166,10 +174,7 @@ export default function AnalyticsPage() {
             </thead>
             <tbody>
               {sessions.slice(0, 10).map((session) => (
-                <tr
-                  key={session.id}
-                  className="border-b dark:border-gray-700"
-                >
+                <tr key={session.id} className="border-b dark:border-gray-700">
                   <td className="px-4 py-2">
                     {format(new Date(session.start), 'MMM dd, yyyy HH:mm')}
                   </td>

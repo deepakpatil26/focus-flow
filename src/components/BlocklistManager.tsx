@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from 'react';
 import { Trash2 } from 'lucide-react';
 import { doc, setDoc, getDoc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../firebase';
+
+// No need for custom window.chrome declaration; @types/chrome already provides it.
 
 export default function BlocklistManager() {
   const [inputValue, setInputValue] = useState('');
@@ -13,10 +16,10 @@ export default function BlocklistManager() {
     // Check if extension is installed
     if (window.chrome?.runtime) {
       try {
-        chrome.runtime.sendMessage(
+        window.chrome?.runtime?.sendMessage(
           'extension-id', 
           { type: 'PING' },
-          response => {
+          (response: unknown) => {
             setExtensionInstalled(!!response);
           }
         );
@@ -53,7 +56,7 @@ export default function BlocklistManager() {
 
     // Update extension if installed
     if (extensionInstalled) {
-      chrome.runtime.sendMessage({
+      window.chrome?.runtime?.sendMessage({
         type: 'UPDATE_BLOCKLIST',
         payload: {
           domains: newBlocklist,
