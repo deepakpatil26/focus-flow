@@ -8,10 +8,12 @@ import RouterToTop from './utils/RouterToTop';
 import HomePage from './pages/HomePage';
 import BlocklistPage from './pages/BlocklistPage';
 import AnalyticsPage from './pages/AnalyticsPage';
+import AdminPage from './pages/AdminPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
 import MainLayout from './layouts/MainLayout';
 import PrivateRoute from './components/PrivateRoute';
+import AdminRoute from './components/AdminRoute';
 import SettingsPage from './pages/SettingsPage';
 import { useEffect } from 'react';
 
@@ -54,6 +56,16 @@ export default function App() {
                 <AnalyticsPage />
               </MainLayout>
             </PrivateRoute>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute>
+              <MainLayout>
+                <AdminPage />
+              </MainLayout>
+            </AdminRoute>
           }
         />
         <Route

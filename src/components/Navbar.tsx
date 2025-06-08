@@ -3,10 +3,24 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useUser } from '../context/UserContext';
 import DarkModeToggle from './DarkModeToggle';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export default function Navbar() {
   const { user, setUser } = useUser();
   const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser && firebaseUser.email?.endsWith('@admin.com')) {
+        setIsAdmin(true);
+      } else {
+        setIsAdmin(false);
+      }
+    });
+    return () => unsubscribe();
+  }, []);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -21,6 +35,14 @@ export default function Navbar() {
         <Link to="/blocklist">Blocklist</Link>
         <Link to="/analytics">Analytics</Link>
         <Link to="/settings">Settings</Link>
+        {isAdmin && (
+          <Link 
+            to="/admin" 
+            className="text-red-600 dark:text-red-400 font-medium"
+          >
+            Admin
+          </Link>
+        )}
         <DarkModeToggle />
       </div>
 
@@ -29,6 +51,7 @@ export default function Navbar() {
           <>
             <span className="hidden text-sm sm:inline">
               Welcome, {user.name}
+              {isAdmin && <span className="ml-1 text-red-500">(Admin)</span>}
             </span>
             <button
               onClick={handleLogout}

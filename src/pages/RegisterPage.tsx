@@ -22,10 +22,11 @@ export default function RegisterPage() {
       );
       const user = userCredential.user;
 
-      // Save user profile to Firestore
+      // Save user profile to Firestore with creation timestamp
       await setDoc(doc(db, 'users', user.uid), {
         name,
         email,
+        createdAt: new Date(),
       });
 
       setSuccess('Registration successful! Please login.');
@@ -81,6 +82,14 @@ export default function RegisterPage() {
           Register
         </button>
       </form>
+      
+      {email.endsWith('@admin.com') && (
+        <div className="mt-4 p-3 bg-red-100 dark:bg-red-900/20 rounded-lg border border-red-300 dark:border-red-700">
+          <p className="text-sm text-red-800 dark:text-red-200">
+            🔐 Admin account detected! You will have access to the admin dashboard.
+          </p>
+        </div>
+      )}
     </div>
   );
 }
