@@ -1,7 +1,6 @@
 # 🚀 FocusFlow: Pomodoro & Distraction Blocker with Session Analytics
 
 ![FocusFlow Logo](src/assets/focus-flow.png)
-![GitHub License](https://img.shields.io/github/license/deepakpatil26/focus-flow?style=flat-square)
 
 ## Stay Focused, Stay Productive
 
