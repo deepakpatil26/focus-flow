@@ -1,0 +1,20 @@
+<svg width="200" height="60" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle for focus symbol -->
+  <circle cx="30" cy="30" r="25" fill="#3B82F6" opacity="0.1"/>
+  <circle cx="30" cy="30" r="20" fill="#3B82F6" opacity="0.2"/>
+  <circle cx="30" cy="30" r="15" fill="#3B82F6" opacity="0.3"/>
+  <circle cx="30" cy="30" r="10" fill="#3B82F6"/>
+  
+  <!-- Flow lines -->
+  <path d="M60 20 Q70 15 80 20 T100 20" stroke="#10B981" stroke-width="3" fill="none" opacity="0.8"/>
+  <path d="M60 30 Q70 25 80 30 T100 30" stroke="#10B981" stroke-width="3" fill="none"/>
+  <path d="M60 40 Q70 35 80 40 T100 40" stroke="#10B981" stroke-width="3" fill="none" opacity="0.8"/>
+  
+  <!-- Text -->
+  <text x="110" y="25" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" fill="#1F2937">
+    Focus
+  </text>
+  <text x="110" y="45" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="400" fill="#10B981">
+    Flow
+  </text>
+</svg>

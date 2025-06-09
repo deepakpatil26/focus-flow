@@ -1,12 +1,54 @@
 # 🚀 FocusFlow: Pomodoro & Distraction Blocker with Session Analytics
 
-![FocusFlow Logo](src/assets/focus-flow.png)
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="src/assets/focusflow-logo-dark.svg">
+    <img alt="FocusFlow Logo" src="src/assets/focusflow-logo.svg" width="300">
+  </picture>
+</div>
+
+<div align="center">
+  
+![GitHub License](https://img.shields.io/github/license/deepakpatil26/focus-flow?style=flat-square)
+![Deployment Status](https://img.shields.io/badge/deployment-live-brightgreen?style=flat-square)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
+
+</div>
 
 ## Stay Focused, Stay Productive
 
 FocusFlow is a powerful productivity tool designed to help you master your focus using the Pomodoro technique. With customizable timers, distraction blocking, and insightful analytics, FocusFlow empowers you to take control of your work sessions and achieve your goals.
 
-![FocusFlow Screenshot](src/assets/screenshot.png)
+## 🌐 Live Deployment
+
+**🔗 Access the application:** [https://symphonious-entremet-8fb176.netlify.app](https://symphonious-entremet-8fb176.netlify.app)
+
+### Deployment Information
+
+- **Hosting Platform:** Netlify
+- **Deployment Type:** Static Site Deployment
+- **Build Command:** `npm run build`
+- **Publish Directory:** `dist`
+- **Domain:** Custom Netlify subdomain
+- **SSL:** Enabled (HTTPS)
+- **CDN:** Global edge network for fast loading
+
+### How to Access
+
+1. **Direct Access:** Click the live deployment link above
+2. **Mobile Friendly:** The application is fully responsive and works on all devices
+3. **Browser Compatibility:** Works on all modern browsers (Chrome, Firefox, Safari, Edge)
+4. **No Installation Required:** Access instantly through your web browser
+
+### Deployment Features
+
+- ✅ **Automatic Deployments:** Connected to GitHub for continuous deployment
+- ✅ **HTTPS Security:** All traffic encrypted with SSL certificates
+- ✅ **Global CDN:** Fast loading times worldwide
+- ✅ **Mobile Optimized:** Responsive design for all screen sizes
+- ✅ **Progressive Web App:** Can be installed on mobile devices
+
+---
 
 ## Scenario
 
@@ -50,7 +92,7 @@ Modern knowledge workers are constantly battling distractions—endless browser 
 ### 📝 Session Logging
 
 - Automatic logging of session start/end, interruptions, and breaks
-- Manual “Abort” option with reason capture
+- Manual "Abort" option with reason capture
 
 ### 📊 Analytics Dashboard
 
@@ -70,11 +112,12 @@ Modern knowledge workers are constantly battling distractions—endless browser 
 
 ---
 
-## 💡 Additional Suggestions
+## 💡 Additional Features
 
 - **Streaks & Achievements:** Motivate users with daily streaks and achievement badges
 - **Quick Notes:** Jot down thoughts or to-dos during breaks
 - **Cloud Sync:** All data is securely stored and synced via the Firebase backend
+- **Admin Dashboard:** Comprehensive user management and analytics for administrators
 
 ---
 
@@ -82,3 +125,70 @@ Modern knowledge workers are constantly battling distractions—endless browser 
 
 - **Frontend:** React + TypeScript + Tailwind CSS
 - **Backend:** Firebase (Auth, Firestore, Hosting)
+- **Deployment:** Netlify
+- **Browser Extension:** Chrome Extension for website blocking
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js (v18 or higher)
+- npm or pnpm
+- Modern web browser
+
+### Local Development
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/deepakpatil26/focus-flow.git
+   cd focus-flow
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser**
+   ```
+   http://localhost:5173
+   ```
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+## 📱 Browser Extension
+
+FocusFlow includes a Chrome browser extension for website blocking functionality:
+
+1. Navigate to `chrome://extensions/`
+2. Enable "Developer mode"
+3. Click "Load unpacked" and select the `extension` folder
+4. The extension will integrate with the web application automatically
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+<div align="center">
+  <p>Built with ❤️ for productivity enthusiasts</p>
+  <p>
+    <a href="https://symphonious-entremet-8fb176.netlify.app">🌐 Live Demo</a> •
+    <a href="#-getting-started">📖 Documentation</a> •
+    <a href="https://github.com/deepakpatil26/focus-flow/issues">🐛 Report Bug</a>
+  </p>
+</div>
