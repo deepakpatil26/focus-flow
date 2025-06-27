@@ -21,7 +21,7 @@ FocusFlow is a powerful productivity tool designed to help you master your focus
 
 ## 🌐 Live Deployment
 
-**🔗 Access the application:** [https://symphonious-entremet-8fb176.netlify.app](https://symphonious-entremet-8fb176.netlify.app)
+**🔗 Access the application:** [Go Live](https://focus-flow-345.netlify.app/)
 
 ### Deployment Information
 
