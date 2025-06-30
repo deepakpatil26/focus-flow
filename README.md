@@ -21,7 +21,7 @@ FocusFlow is a powerful productivity tool designed to help you master your focus
 
 ## 🌐 Live Deployment
 
-**🔗 Access the application:** [https://symphonious-entremet-8fb176.netlify.app](https://symphonious-entremet-8fb176.netlify.app)
+**🔗 Access the application:** [Go Live](https://focus-flow-345.netlify.app/)
 
 ### Deployment Information
 
@@ -188,9 +188,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+<<<<<<< HEAD
 <p align="center">
   Built with ❤️ for productivity enthusiasts  
   <a href="https://symphonious-entremet-8fb176.netlify.app">🌐 Live Demo</a> •
   <a href="#-getting-started">📖 Documentation</a> •
   <a href="https://github.com/deepakpatil26/focus-flow/issues">🐛 Report Bug</a>
 </p>
+=======
+<div align="center">
+  <p>Built with ❤️ for productivity enthusiasts</p>
+  <p>
+    <a href="https://symphonious-entremet-8fb176.netlify.app">🌐 Live Demo</a> •
+    <a href="#-getting-started">📖 Documentation</a> •
+    <a href="https://github.com/deepakpatil26/focus-flow/issues">🐛 Report Bug</a>
+  </p>
+</div>
+>>>>>>> 530730b3c4bc0b2211e7ecb1f29064ec82cf4bea
