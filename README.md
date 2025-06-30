@@ -21,7 +21,7 @@ FocusFlow is a powerful productivity tool designed to help you master your focus
 
 ## 🌐 Live Deployment
 
-**🔗 Access the application:** [Go Live](https://focus-flow-345.netlify.app/)
+**🔗 Access the application:** [Go Live](https://focus-flow-three-psi.vercel.app/)
 
 ### Deployment Information
 
