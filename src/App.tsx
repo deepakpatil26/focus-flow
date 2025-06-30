@@ -1,5 +1,5 @@
 import {
-  BrowserRouter as Router,
+  
   Routes,
   Route,
   Navigate,
@@ -25,7 +25,7 @@ export default function App() {
   }, []);
 
   return (
-    <Router>
+    <>
       <RouterToTop />
       <Routes>
         <Route
@@ -94,6 +94,6 @@ export default function App() {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
-    </Router>
+    </>
   );
 }

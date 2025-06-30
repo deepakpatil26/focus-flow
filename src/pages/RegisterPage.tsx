@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth, db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { doc, setDoc } from 'firebase/firestore';
+import { updateProfile } from 'firebase/auth';
 
 export default function RegisterPage() {
   const [name, setName] = useState('');
@@ -14,6 +15,11 @@ export default function RegisterPage() {
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+      if (!name.trim()) {
+    setError('Name is required.');
+    setSuccess('');
+    return;
+  }
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -21,6 +27,10 @@ export default function RegisterPage() {
         password,
       );
       const user = userCredential.user;
+
+      // Update Firebase Auth profile
+    await updateProfile(user, { displayName: name.trim() });
+
 
       // Save user profile to Firestore with creation timestamp
       await setDoc(doc(db, 'users', user.uid), {
