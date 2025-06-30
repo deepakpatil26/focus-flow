@@ -1,19 +1,19 @@
 # 🚀 FocusFlow: Pomodoro & Distraction Blocker with Session Analytics
 
-<div align="center">
+<p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="src/assets/focusflow-logo-dark.svg">
     <img alt="FocusFlow Logo" src="src/assets/focusflow-logo.svg" width="300">
   </picture>
-</div>
+</p>
 
-<div align="center">
+<p align="center">
   
-![GitHub License](https://img.shields.io/github/license/deepakpatil26/focus-flow?style=flat-square)
-![Deployment Status](https://img.shields.io/badge/deployment-live-brightgreen?style=flat-square)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
+<img src="https://img.shields.io/github/license/deepakpatil26/focus-flow?style=flat-square" alt="GitHub License"/>
+<img src="https://img.shields.io/badge/deployment-live-brightgreen?style=flat-square" alt="Deployment Status"/>
+<img src="https://img.shields.io/badge/build-passing-brightgreen?style=flat-square" alt="Build Status"/>
 
-</div>
+</p>
 
 ## Stay Focused, Stay Productive
 
@@ -139,23 +139,27 @@ Modern knowledge workers are constantly battling distractions—endless browser 
 ### Local Development
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/deepakpatil26/focus-flow.git
    cd focus-flow
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
 
 4. **Open in browser**
-   ```
+
+   ```bash
    http://localhost:5173
    ```
 
@@ -184,11 +188,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<div align="center">
-  <p>Built with ❤️ for productivity enthusiasts</p>
-  <p>
-    <a href="https://symphonious-entremet-8fb176.netlify.app">🌐 Live Demo</a> •
-    <a href="#-getting-started">📖 Documentation</a> •
-    <a href="https://github.com/deepakpatil26/focus-flow/issues">🐛 Report Bug</a>
-  </p>
-</div>
+<p align="center">
+  Built with ❤️ for productivity enthusiasts  
+  <a href="https://symphonious-entremet-8fb176.netlify.app">🌐 Live Demo</a> •
+  <a href="#-getting-started">📖 Documentation</a> •
+  <a href="https://github.com/deepakpatil26/focus-flow/issues">🐛 Report Bug</a>
+</p>
