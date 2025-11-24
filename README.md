@@ -188,9 +188,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-<p align="center">
+## ❤️ Acknowledgements
+
   Built with ❤️ for productivity enthusiasts  
   <a href="https://symphonious-entremet-8fb176.netlify.app">🌐 Live Demo</a> •
   <a href="#-getting-started">📖 Documentation</a> •
   <a href="https://github.com/deepakpatil26/focus-flow/issues">🐛 Report Bug</a>
-</p>
