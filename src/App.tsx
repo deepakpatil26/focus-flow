@@ -1,9 +1,4 @@
-import {
-  
-  Routes,
-  Route,
-  Navigate,
-} from 'react-router-dom';
+import {Routes,Route,Navigate} from 'react-router-dom';
 import RouterToTop from './utils/RouterToTop';
 import HomePage from './pages/HomePage';
 import BlocklistPage from './pages/BlocklistPage';
