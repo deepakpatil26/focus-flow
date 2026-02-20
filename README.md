@@ -2,17 +2,9 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="src/assets/focusflow-logo-dark.svg">
-    <img alt="FocusFlow Logo" src="src/assets/focusflow-logo.svg" width="300">
+    <source media="(prefers-color-scheme: dark)" srcset="public/assets/focusflow-logo-dark.svg">
+    <img alt="FocusFlow Logo" src="public/assets/focusflow-logo.svg" width="300">
   </picture>
-</p>
-
-<p align="center">
-  
-<img src="https://img.shields.io/github/license/deepakpatil26/focus-flow?style=flat-square" alt="GitHub License"/>
-<img src="https://img.shields.io/badge/deployment-live-brightgreen?style=flat-square" alt="Deployment Status"/>
-<img src="https://img.shields.io/badge/build-passing-brightgreen?style=flat-square" alt="Build Status"/>
-
 </p>
 
 ## Stay Focused, Stay Productive
@@ -49,6 +41,22 @@ FocusFlow is a powerful productivity tool designed to help you master your focus
 - ✅ **Progressive Web App:** Can be installed on mobile devices
 
 ---
+
+## 🖼️ Images
+
+Screenshots and illustrative images for FocusFlow (stored in `src/assets`):
+
+- **Homepage:**
+
+   ![Homepage](public/assets/homepage.png)
+
+- **Admin dashboard:**
+
+   ![Admin Dashboard](public/assets/admin-dashboard.png)
+
+- **Blocked page (example):**
+
+   ![Blocked Page](public/assets/youtube-blocked.png)
 
 ## Scenario
 
