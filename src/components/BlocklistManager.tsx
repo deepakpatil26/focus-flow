@@ -13,35 +13,71 @@ export default function BlocklistManager() {
   const [extensionInstalled, setExtensionInstalled] = useState(false);
 
   useEffect(() => {
-    // Check if extension is installed
-    if (window.chrome?.runtime) {
-      try {
-        window.chrome?.runtime?.sendMessage(
-          'extension-id', 
-          { type: 'PING' },
-          (response: unknown) => {
-            setExtensionInstalled(!!response);
-          }
-        );
-      } catch (e) {
-        setExtensionInstalled(false);
-      }
+    console.log('[FocusFlow Web] useEffect starting...');
+    
+    // Check the global flag set by main.tsx listener
+    const isExtensionInstalled = !!(window as any).__FOCUSFLOW_EXTENSION_READY__;
+    console.log('[FocusFlow Web] Extension detected (global flag):', isExtensionInstalled);
+    
+    if (isExtensionInstalled) {
+      console.log('[FocusFlow Web] Extension ID:', (window as any).__FOCUSFLOW_EXTENSION_ID__);
+      setExtensionInstalled(true);
     }
+    
+    // Set up message listener for data updates (works whether extension is installed or not)
+    const handleMessage = (event: MessageEvent) => {
+      if (event.data?.type === 'FOCUSFLOW_EXTENSION_READY') {
+        console.log('[FocusFlow Web] Extension ready message received!');
+        setExtensionInstalled(true);
+      }
+      
+      // Handle data updates from extension
+      if (event.data?.type === 'EXTENSION_DATA_UPDATED' || event.data?.type === 'EXTENSION_RESPONSE') {
+        console.log('[FocusFlow Web] Extension data updated, reloading blocklist');
+        loadBlocklist();
+      }
+    };
+    
+    window.addEventListener('message', handleMessage);
+    
+    // Check again after a delay in case the flag gets set later
+    const timeoutId = setTimeout(() => {
+      const delayedCheck = !!(window as any).__FOCUSFLOW_EXTENSION_READY__;
+      console.log('[FocusFlow Web] Delayed check (200ms):', delayedCheck);
+      if (delayedCheck && !isExtensionInstalled) {
+        setExtensionInstalled(true);
+      }
+    }, 200);
 
     loadBlocklist();
+    
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('message', handleMessage);
+    };
   }, []);
 
   const loadBlocklist = async () => {
-    if (!auth.currentUser) return;
+    if (!auth.currentUser) {
+      console.log('[FocusFlow Web] No user logged in, cannot load blocklist');
+      return;
+    }
 
-    const blocklistRef = doc(db, 'users', auth.currentUser.uid, 'data', 'blocklist');
-    const docSnap = await getDoc(blocklistRef);
+    try {
+      const blocklistRef = doc(db, 'users', auth.currentUser.uid, 'data', 'blocklist');
+      const docSnap = await getDoc(blocklistRef);
 
-    if (docSnap.exists()) {
-      setBlocklist(docSnap.data().domains || []);
-      setIsBlocking(docSnap.data().isActive || false);
-    } else {
-      await setDoc(blocklistRef, { domains: [], isActive: false });
+      if (docSnap.exists()) {
+        const data = docSnap.data();
+        setBlocklist(data.domains || []);
+        setIsBlocking(data.isActive || false);
+        console.log('[FocusFlow Web] Loaded blocklist:', { domains: data.domains, isActive: data.isActive });
+      } else {
+        console.log('[FocusFlow Web] No blocklist found, creating new one');
+        await setDoc(blocklistRef, { domains: [], isActive: false });
+      }
+    } catch (error) {
+      console.error('[FocusFlow Web] Error loading blocklist:', error);
     }
   };
 
@@ -53,16 +89,31 @@ export default function BlocklistManager() {
       domains: newBlocklist,
       isActive: newIsBlocking,
     });
+    console.log('[FocusFlow Web] Saved to Firebase:', { domains: newBlocklist, isActive: newIsBlocking });
 
     // Update extension if installed
     if (extensionInstalled) {
-      window.chrome?.runtime?.sendMessage({
+      const message = {
         type: 'UPDATE_BLOCKLIST',
         payload: {
           domains: newBlocklist,
           isActive: newIsBlocking,
         },
-      });
+      };
+      console.log('[FocusFlow Web] Sending update to extension via postMessage:', newBlocklist);
+      
+      try {
+        window.postMessage({
+          type: 'FOCUSFLOW_TO_EXTENSION',
+          message: message,
+          messageId: Date.now(),
+        }, '*');
+        console.log('[FocusFlow Web] Message sent successfully');
+      } catch (error) {
+        console.error('[FocusFlow Web] Error sending message:', error);
+      }
+    } else {
+      console.log('[FocusFlow Web] Extension not detected, only saved to Firebase');
     }
   };
 
