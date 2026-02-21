@@ -3,51 +3,239 @@
   <head>
     <title>FocusFlow Blocker</title>
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
       body {
-        width: 300px;
-        padding: 16px;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        width: 380px;
+        padding: 12px;
+        font-family: system-ui, -apple-system, sans-serif;
+        background: #f9fafb;
+        font-size: 13px;
+      }
+      .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+      }
+      .header h3 {
+        margin: 0;
+        font-size: 16px;
+        color: #1f2937;
       }
       .status {
-        padding: 8px;
+        padding: 6px 12px;
         border-radius: 4px;
-        margin-bottom: 16px;
         text-align: center;
         font-weight: bold;
+        font-size: 12px;
+        cursor: pointer;
+        transition: all 0.2s;
       }
-      .active {
+      .status:hover {
+        opacity: 0.9;
+        transform: scale(1.05);
+      }
+      .status.active {
         background-color: #dcfce7;
         color: #166534;
       }
-      .inactive {
+      .status.inactive {
         background-color: #fee2e2;
         color: #991b1b;
       }
+      .section {
+        margin-bottom: 12px;
+      }
+      .section-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: #6b7280;
+        margin-bottom: 6px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .current-page {
+        background: #ede9fe;
+        border: 1px solid #ddd6fe;
+        padding: 8px;
+        border-radius: 4px;
+        margin-bottom: 8px;
+      }
+      .current-page-domain {
+        font-weight: 600;
+        color: #5b21b6;
+        margin-bottom: 6px;
+        word-break: break-all;
+      }
+      .quick-block-btn {
+        width: 100%;
+        padding: 4px 8px;
+        background: #8b5cf6;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 600;
+        transition: background 0.2s;
+      }
+      .quick-block-btn:hover {
+        background: #7c3aed;
+      }
+      .quick-block-btn.blocked {
+        background: #dc2626;
+      }
+      .quick-block-btn.blocked:hover {
+        background: #b91c1c;
+      }
+      .quick-add {
+        display: flex;
+        gap: 4px;
+        margin-bottom: 8px;
+      }
+      .quick-add input {
+        flex: 1;
+        padding: 4px 8px;
+        border: 1px solid #d1d5db;
+        border-radius: 3px;
+        font-size: 12px;
+      }
+      .quick-add input:focus {
+        outline: none;
+        border-color: #8b5cf6;
+        box-shadow: 0 0 3px rgba(139, 92, 246, 0.3);
+      }
+      .quick-add button {
+        padding: 4px 10px;
+        background: #10b981;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 600;
+        transition: background 0.2s;
+      }
+      .quick-add button:hover {
+        background: #059669;
+      }
       #blocklist {
-        padding-top: 8px;
+        max-height: 200px;
+        overflow-y: auto;
       }
       ul {
         list-style: none;
-        padding: 0;
-        margin: 0;
       }
       li {
-        padding: 6px;
-        background-color: #f3f4f6;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 8px;
+        background: white;
         margin-bottom: 4px;
-        border-radius: 4px;
+        border: 1px solid #e5e7eb;
+        border-radius: 3px;
         font-size: 12px;
+      }
+      .domain-name {
+        flex: 1;
+        word-break: break-all;
+        color: #374151;
+      }
+      .remove-btn {
+        background: #ef4444;
+        color: white;
+        border: none;
+        border-radius: 2px;
+        padding: 2px 6px;
+        cursor: pointer;
+        font-size: 10px;
+        margin-left: 6px;
+        transition: background 0.2s;
+      }
+      .remove-btn:hover {
+        background: #dc2626;
+      }
+      .empty-message {
+        padding: 8px;
+        text-align: center;
+        color: #9ca3af;
+        font-style: italic;
+        font-size: 12px;
+      }
+      .actions {
+        display: flex;
+        gap: 4px;
+        margin-top: 12px;
+      }
+      .action-btn {
+        flex: 1;
+        padding: 6px 8px;
+        background: #3b82f6;
+        color: white;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 600;
+        transition: background 0.2s;
+      }
+      .action-btn:hover {
+        background: #2563eb;
+      }
+      .action-btn.secondary {
+        background: #6b7280;
+      }
+      .action-btn.secondary:hover {
+        background: #4b5563;
       }
     </style>
   </head>
   <body>
-    <h3 style="margin-top: 0;">FocusFlow Blocker</h3>
-    <div id="status" class="status"></div>
-    <h4 style="margin-bottom: 8px;">Domains</h4>
-    <div id="blocklist"></div>
+    <div class="header">
+      <h3>FocusFlow</h3>
+      <div id="status" class="status"></div>
+    </div>
+
+    <!-- Current Page Section -->
+    <div class="section" id="currentPageSection" style="display: none;">
+      <div class="section-title">Current Page</div>
+      <div class="current-page">
+        <div class="current-page-domain" id="currentPageDomain"></div>
+        <button class="quick-block-btn" id="quickBlockBtn"></button>
+      </div>
+    </div>
+
+    <!-- Quick Add Section -->
+    <div class="section">
+      <div class="section-title">Add Domain</div>
+      <div class="quick-add">
+        <input
+          type="text"
+          id="domainInput"
+          placeholder="e.g., youtube.com"
+          autocomplete="off"
+        />
+        <button id="addBtn">Add</button>
+      </div>
+    </div>
+
+    <!-- Blocklist Section -->
+    <div class="section">
+      <div class="section-title">Blocked Domains</div>
+      <div id="blocklist"></div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="action-btn" id="openSettingsBtn">Full Settings</button>
+      <button class="action-btn secondary" id="helpBtn">Help</button>
+    </div>
+
     <script src="popup.js"></script>
   </body>
 </html>
